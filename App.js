@@ -5,9 +5,9 @@ import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
 
 import { GameHeader } from "./components/gameHeader";
-import { StartGameScreen } from "./components/startGameScreen";
-import { GameScreen } from "./components/gameScreen";
-import { GameOverScreen } from "./components/gameOverScreen";
+import { StartGameScreen } from "./screens/startGameScreen";
+import { GameScreen } from "./screens/gameScreen";
+import { GameOverScreen } from "./screens/gameOverScreen";
 
 const fetchFonts = () => {
   return Font.loadAsync({

@@ -8,10 +8,10 @@ import {
   Keyboard,
   Alert,
 } from "react-native";
-import { Card } from "./Card";
+import { Card } from "../components/Card";
 import { Colors } from "../constants/colors";
-import { InputNumber } from "./InputNumber";
-import { NumberContainer } from "./numberContainer";
+import { InputNumber } from "../components/InputNumber";
+import { NumberContainer } from "../components/numberContainer";
 
 export const StartGameScreen = (props) => {
   console.log("StartGameScreen");

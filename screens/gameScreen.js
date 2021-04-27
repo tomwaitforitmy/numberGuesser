@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
-import { StyleSheet, Text, View, Button, Alert } from "react-native";
-import { NumberContainer } from "./numberContainer";
-import { Card, Cards } from "./Card";
+import { StyleSheet, View, Button, Alert } from "react-native";
+import { NumberContainer } from "../components/numberContainer";
+import { Card } from "../components/Card";
 import { Colors } from "../constants/colors";
 
 const generateRandomBetween = (min, max, exclude) => {
