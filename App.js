@@ -1,14 +1,37 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import * as Font from "expo-font";
+import AppLoading from "expo-app-loading";
+
 import { GameHeader } from "./components/gameHeader";
 import { StartGameScreen } from "./components/startGameScreen";
 import { GameScreen } from "./components/gameScreen";
 import { GameOverScreen } from "./components/gameOverScreen";
 
+const fetchFonts = () => {
+  return Font.loadAsync({
+    "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
+    "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
+  });
+};
+
 export default function App() {
+  console.log("App start");
   const [userNumber, setUserNumber] = useState();
   const [numberOfRounds, setNumberOfRounds] = useState(0);
+  const [dataLoaded, setDataLoaded] = useState(false);
+
+  if (!dataLoaded) {
+    console.log("loading data");
+    return (
+      <AppLoading
+        startAsync={fetchFonts}
+        onFinish={() => setDataLoaded(true)}
+        onError={(error) => console.log(error)}
+      />
+    );
+  }
 
   const startGameHandler = (selectedNumber) => {
     setUserNumber(selectedNumber);
@@ -39,8 +62,6 @@ export default function App() {
       ></GameOverScreen>
     );
   }
-
-  console.log("App start");
   return (
     <View style={styles.screen}>
       <GameHeader title="Guess a Number" />

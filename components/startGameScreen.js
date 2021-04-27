@@ -130,6 +130,7 @@ const styles = StyleSheet.create({
   subTitle: {
     fontSize: 20,
     marginVertical: 10,
+    fontFamily: "open-sans-bold",
   },
   input: {
     width: 50,
