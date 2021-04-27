@@ -14,6 +14,7 @@ import { InputNumber } from "./InputNumber";
 import { NumberContainer } from "./numberContainer";
 
 export const StartGameScreen = (props) => {
+  console.log("StartGameScreen");
   const [enteredValue, setEnteredValue] = useState("");
   const [confirmed, setConfirmed] = useState(false);
   const [selectedNumber, setSelectedNumber] = useState();
@@ -62,7 +63,6 @@ export const StartGameScreen = (props) => {
     );
   }
 
-  console.log(props.title);
   return (
     <TouchableWithoutFeedback
       onPress={() => {

@@ -16,6 +16,7 @@ const generateRandomBetween = (min, max, exclude) => {
 };
 
 export const GameScreen = (props) => {
+  console.log("Game starting with: " + props.userChoise);
   const [currentGuess, setCurrentGuess] = useState(
     generateRandomBetween(1, 100, props.userChoise)
   );

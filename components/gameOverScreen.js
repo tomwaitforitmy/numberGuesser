@@ -2,7 +2,7 @@ import React from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 
 export const GameOverScreen = (props) => {
-  console.log(props.finalNumber);
+  console.log("Game over:" + props.finalNumber);
   return (
     <View style={styles.container}>
       <Text>The game is over!</Text>

@@ -3,7 +3,6 @@ import { StyleSheet, Text, View } from "react-native";
 import { Colors } from "../constants/colors";
 
 export const GameHeader = (props) => {
-  console.log(props.title);
   return (
     <View style={styles.headerContainer}>
       <Text style={styles.headerTitle}>{props.title}</Text>

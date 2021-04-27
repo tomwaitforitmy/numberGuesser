@@ -3,7 +3,6 @@ import { StyleSheet, Text, View } from "react-native";
 import { Colors } from "../constants/colors";
 
 export const NumberContainer = (props) => {
-  console.log(props.children);
   return (
     <View style={styles.container}>
       <Text style={styles.number}>{props.children}</Text>
