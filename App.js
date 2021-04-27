@@ -22,9 +22,8 @@ export default function App() {
   let content = <StartGameScreen onStartGame={startGameHandler} />;
 
   const restartGameHandler = () => {
-    setUserNumber();
+    setUserNumber(null);
     setNumberOfRounds(0);
-    content = <StartGameScreen onStartGame={startGameHandler} />;
   };
 
   if (userNumber && numberOfRounds === 0) {
