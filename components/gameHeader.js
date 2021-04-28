@@ -1,11 +1,12 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Colors } from "../constants/colors";
+import { MyTitleText } from "./MyTitleText";
 
 export const GameHeader = (props) => {
   return (
     <View style={styles.headerContainer}>
-      <Text style={styles.headerTitle}>{props.title}</Text>
+      <MyTitleText style={styles.headerTitle}>{props.title}</MyTitleText>
     </View>
   );
 };
@@ -21,7 +22,5 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     color: "#0a0a0a",
-    fontSize: 18,
-    fontFamily: "open-sans-bold",
   },
 });

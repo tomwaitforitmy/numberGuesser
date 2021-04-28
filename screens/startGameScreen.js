@@ -12,6 +12,8 @@ import { Card } from "../components/Card";
 import { Colors } from "../constants/colors";
 import { InputNumber } from "../components/InputNumber";
 import { NumberContainer } from "../components/numberContainer";
+import { MyText } from "../components/MyText";
+import { MyTitleText } from "../components/MyTitleText";
 
 export const StartGameScreen = (props) => {
   console.log("StartGameScreen");
@@ -52,7 +54,7 @@ export const StartGameScreen = (props) => {
   if (confirmed) {
     confirmedOutput = (
       <Card style={styles.summaryContainer}>
-        <Text>You selected</Text>
+        <MyText>You selected</MyText>
         <NumberContainer>{selectedNumber}</NumberContainer>
         <Button
           color={Colors.primary}
@@ -70,9 +72,9 @@ export const StartGameScreen = (props) => {
       }}
     >
       <View style={styles.screenContainer}>
-        <Text style={styles.subTitle}>{"Start a new game!"}</Text>
+        <MyTitleText style={styles.subTitle}>{"Start a new game!"}</MyTitleText>
         <Card style={styles.inputContainer}>
-          <Text>Select a number</Text>
+          <MyText>Select a number</MyText>
           <InputNumber
             blurOnSubmit
             autoCapitalize="none"
@@ -128,9 +130,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   subTitle: {
-    fontSize: 20,
     marginVertical: 10,
-    fontFamily: "open-sans-bold",
   },
   input: {
     width: 50,
