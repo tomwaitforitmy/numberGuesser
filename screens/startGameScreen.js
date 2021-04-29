@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   StyleSheet,
-  Text,
   View,
   Button,
   TouchableWithoutFeedback,
@@ -14,6 +13,7 @@ import { InputNumber } from "../components/InputNumber";
 import { NumberContainer } from "../components/numberContainer";
 import { MyText } from "../components/MyText";
 import { MyTitleText } from "../components/MyTitleText";
+import { MyButton } from "../components/MyButton";
 
 export const StartGameScreen = (props) => {
   console.log("StartGameScreen");
@@ -56,11 +56,9 @@ export const StartGameScreen = (props) => {
       <Card style={styles.summaryContainer}>
         <MyText>You selected</MyText>
         <NumberContainer>{selectedNumber}</NumberContainer>
-        <Button
-          color={Colors.primary}
-          title="START GAME"
-          onPress={() => props.onStartGame(selectedNumber)}
-        />
+        <MyButton onPress={() => props.onStartGame(selectedNumber)}>
+          {"START GAME"}
+        </MyButton>
       </Card>
     );
   }

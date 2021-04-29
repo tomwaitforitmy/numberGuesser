@@ -1,7 +1,8 @@
 import React from "react";
-import { Button, StyleSheet, Image, View, Text } from "react-native";
+import { StyleSheet, Image, View, Text } from "react-native";
 import { MyText } from "../components/MyText";
 import { MyTitleText } from "../components/MyTitleText";
+import { MyButton } from "../components/MyButton";
 import { Colors } from "../constants/colors";
 
 export const GameOverScreen = (props) => {
@@ -25,7 +26,7 @@ export const GameOverScreen = (props) => {
         <Text style={styles.highlight}>{props.finalNumber}</Text> was found in{" "}
         <Text style={styles.highlight}>{props.rounds}</Text> rounds.
       </MyText>
-      <Button title="START NEW GAME" onPress={props.onStartGame} />
+      <MyButton onPress={props.onStartGame}>{"START NEW GAME"}</MyButton>
     </View>
   );
 };
