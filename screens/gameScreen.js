@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { StyleSheet, View, Button, Alert } from "react-native";
+import { StyleSheet, View, Button, Alert, ScrollView } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import { NumberContainer } from "../components/numberContainer";
@@ -7,6 +7,7 @@ import { Card } from "../components/Card";
 import { Colors } from "../constants/colors";
 import { MyText } from "../components/MyText";
 import { MyButton } from "../components/MyButton";
+import { GuessListItem } from "../components/GuessListItem";
 
 const generateRandomBetween = (min, max, exclude) => {
   min = Math.ceil(min);
@@ -21,11 +22,10 @@ const generateRandomBetween = (min, max, exclude) => {
 
 export const GameScreen = (props) => {
   console.log("Game starting with: " + props.userChoise);
-  const [currentGuess, setCurrentGuess] = useState(
-    generateRandomBetween(1, 100, props.userChoise)
-  );
+  const initialGuess = generateRandomBetween(1, 100, props.userChoise);
+  const [currentGuess, setCurrentGuess] = useState(initialGuess);
 
-  const [rounds, setRounds] = useState(0);
+  const [pastGuesses, setPastGuesses] = useState([initialGuess]);
 
   const currentMin = useRef(1);
   const currentMax = useRef(100);
@@ -35,10 +35,9 @@ export const GameScreen = (props) => {
   //useEffect: runs after the component has been rendered
   //useRef: does not trigger re-render
   //useState: triggers re-render
-
   useEffect(() => {
     if (currentGuess === userChoise) {
-      onGameOver(rounds);
+      onGameOver(pastGuesses.length);
     }
   }, [currentGuess, userChoise, onGameOver]);
 
@@ -59,7 +58,7 @@ export const GameScreen = (props) => {
     if (direction === "lower") {
       currentMax.current = currentGuess;
     } else if (direction === "higher") {
-      currentMin.current = currentGuess;
+      currentMin.current = currentGuess + 1;
     }
 
     const nextNumber = generateRandomBetween(
@@ -69,7 +68,9 @@ export const GameScreen = (props) => {
     );
 
     setCurrentGuess(nextNumber);
-    setRounds(rounds + 1);
+    // setRounds(rounds + 1);
+    //using currentGuess here not possible, because it is not updated, yet.
+    setPastGuesses((curPastGuesses) => [nextNumber, ...curPastGuesses]);
   };
 
   return (
@@ -88,6 +89,17 @@ export const GameScreen = (props) => {
           <Ionicons name="md-add" size={24} color="white" />
         </MyButton>
       </Card>
+      <View style={styles.guessList}>
+        <ScrollView>
+          {pastGuesses.map((guess, index) => (
+            <GuessListItem
+              key={guess}
+              guess={guess}
+              rounds={pastGuesses.length - index}
+            ></GuessListItem>
+          ))}
+        </ScrollView>
+      </View>
     </View>
   );
 };
@@ -107,5 +119,8 @@ const styles = StyleSheet.create({
   },
   lowerButton: {
     color: Colors.second,
+  },
+  guessList: {
+    width: "80%",
   },
 });
