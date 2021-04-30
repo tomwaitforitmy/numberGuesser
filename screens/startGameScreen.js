@@ -6,6 +6,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Alert,
+  TextInput,
 } from "react-native";
 import { Card } from "../components/Card";
 import { Colors } from "../constants/colors";
@@ -20,9 +21,14 @@ export const StartGameScreen = (props) => {
   const [enteredValue, setEnteredValue] = useState("");
   const [confirmed, setConfirmed] = useState(false);
   const [selectedNumber, setSelectedNumber] = useState();
+  const [name, setName] = useState("");
 
   const onNumberInputHandler = (inputText) => {
     setEnteredValue(inputText.replace(/[^0-9]/g, ""));
+  };
+
+  const onNameInputHandler = (inputName) => {
+    setName(inputName);
   };
 
   const resetInputHandler = () => {
@@ -56,7 +62,7 @@ export const StartGameScreen = (props) => {
       <Card style={styles.summaryContainer}>
         <MyText>You selected</MyText>
         <NumberContainer>{selectedNumber}</NumberContainer>
-        <MyButton onPress={() => props.onStartGame(selectedNumber)}>
+        <MyButton onPress={() => props.onStartGame(selectedNumber, name)}>
           {"START GAME"}
         </MyButton>
       </Card>
@@ -71,6 +77,14 @@ export const StartGameScreen = (props) => {
     >
       <View style={styles.screenContainer}>
         <MyTitleText style={styles.subTitle}>{"Start a new game!"}</MyTitleText>
+        <Card style={styles.inputContainer}>
+          <MyText>Enter your name</MyText>
+          <TextInput
+            onChangeText={onNameInputHandler}
+            value={name}
+            autoCorrect={false}
+          ></TextInput>
+        </Card>
         <Card style={styles.inputContainer}>
           <MyText>Select a number</MyText>
           <InputNumber
@@ -126,6 +140,7 @@ const styles = StyleSheet.create({
     width: 300,
     maxWidth: "80%",
     alignItems: "center",
+    marginBottom: 20,
   },
   subTitle: {
     marginVertical: 10,

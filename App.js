@@ -8,6 +8,7 @@ import { GameHeader } from "./components/gameHeader";
 import { StartGameScreen } from "./screens/startGameScreen";
 import { GameScreen } from "./screens/gameScreen";
 import { GameOverScreen } from "./screens/gameOverScreen";
+import { HighscoreScreen } from "./screens/highScoreScreen";
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -21,6 +22,9 @@ export default function App() {
   const [userNumber, setUserNumber] = useState();
   const [numberOfRounds, setNumberOfRounds] = useState(0);
   const [dataLoaded, setDataLoaded] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [viewHighscore, setViewHighscore] = useState(false);
+  const [highScores, setHighScores] = useState([]);
 
   if (!dataLoaded) {
     console.log("loading data");
@@ -33,23 +37,40 @@ export default function App() {
     );
   }
 
-  const startGameHandler = (selectedNumber) => {
+  const startGameHandler = (selectedNumber, name) => {
     setUserNumber(selectedNumber);
     setNumberOfRounds(0);
+    setUserName(name);
   };
 
   const gameOverHandler = (rounds) => {
     setNumberOfRounds(rounds);
+    setHighScores((curHighScores) => [
+      userName + " with #" + rounds,
+      ...curHighScores,
+    ]);
   };
 
   let content = <StartGameScreen onStartGame={startGameHandler} />;
 
   const restartGameHandler = () => {
+    setViewHighscore(false);
     setUserNumber(null);
     setNumberOfRounds(0);
   };
 
-  if (userNumber && numberOfRounds === 0) {
+  const onViewHighScoreHandler = () => {
+    setViewHighscore(true);
+  };
+
+  if (viewHighscore) {
+    content = (
+      <HighscoreScreen
+        highScores={highScores}
+        onGoBack={restartGameHandler}
+      ></HighscoreScreen>
+    );
+  } else if (userNumber && numberOfRounds === 0) {
     content = (
       <GameScreen userChoise={userNumber} onGameOver={gameOverHandler} />
     );
@@ -58,7 +79,9 @@ export default function App() {
       <GameOverScreen
         finalNumber={userNumber}
         rounds={numberOfRounds}
+        userName={userName}
         onStartGame={restartGameHandler}
+        onViewHighScore={onViewHighScoreHandler}
       ></GameOverScreen>
     );
   }

@@ -6,7 +6,7 @@ import { MyButton } from "../components/MyButton";
 import { Colors } from "../constants/colors";
 
 export const GameOverScreen = (props) => {
-  console.log("Game over:" + props.finalNumber);
+  console.log("Game over:" + props.finalNumber + " for " + props.userName);
   return (
     <View style={styles.container}>
       <MyTitleText>The game is over!</MyTitleText>
@@ -22,11 +22,12 @@ export const GameOverScreen = (props) => {
         />
       </View>
       <MyText style={styles.resultText}>
-        Your secret number{" "}
+        {props.userName} your secret number{" "}
         <Text style={styles.highlight}>{props.finalNumber}</Text> was found in{" "}
         <Text style={styles.highlight}>{props.rounds}</Text> rounds.
       </MyText>
       <MyButton onPress={props.onStartGame}>{"START NEW GAME"}</MyButton>
+      <MyButton onPress={props.onViewHighScore}>{"VIEW HIGH SCORE"}</MyButton>
     </View>
   );
 };
