@@ -89,8 +89,8 @@ export const GameScreen = (props) => {
           <Ionicons name="md-add" size={24} color="white" />
         </MyButton>
       </Card>
-      <View style={styles.guessList}>
-        <ScrollView>
+      <View style={styles.guessListContainer}>
+        <ScrollView contentContainerStyle={styles.guessListScrollView}>
           {pastGuesses.map((guess, index) => (
             <GuessListItem
               key={guess}
@@ -120,9 +120,15 @@ const styles = StyleSheet.create({
   lowerButton: {
     color: Colors.second,
   },
-  guessList: {
+  guessListContainer: {
     width: "80%",
     flex: 1,
     //always add flex 1 to be scrollable !!!
+  },
+  guessListScrollView: {
+    alignItems: "center",
+    justifyContent: "flex-end",
+    flexGrow: 1,
+    //for scrollview, much better than flex 1 !!!
   },
 });
