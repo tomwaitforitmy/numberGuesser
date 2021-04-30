@@ -122,5 +122,7 @@ const styles = StyleSheet.create({
   },
   guessList: {
     width: "80%",
+    flex: 1,
+    //always add flex 1 to be scrollable !!!
   },
 });
