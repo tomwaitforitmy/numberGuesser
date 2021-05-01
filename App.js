@@ -51,7 +51,7 @@ export default function App() {
     ]);
   };
 
-  let content = <StartGameScreen onStartGame={startGameHandler} />;
+  let content = <StartGameScreen onStartGame={startGameHandler} userName={userName}/>;
 
   const restartGameHandler = () => {
     setViewHighscore(false);

@@ -21,7 +21,7 @@ export const StartGameScreen = (props) => {
   const [enteredValue, setEnteredValue] = useState("");
   const [confirmed, setConfirmed] = useState(false);
   const [selectedNumber, setSelectedNumber] = useState();
-  const [name, setName] = useState("");
+  const [name, setName] = useState(props.userName);
 
   const onNumberInputHandler = (inputText) => {
     setEnteredValue(inputText.replace(/[^0-9]/g, ""));
