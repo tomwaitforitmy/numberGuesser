@@ -6,11 +6,10 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Alert,
-  TextInput,
 } from "react-native";
 import { Card } from "../components/Card";
 import { Colors } from "../constants/colors";
-import { InputNumber } from "../components/InputNumber";
+import { InputValues } from "../components/InputValues";
 import { NumberContainer } from "../components/numberContainer";
 import { MyText } from "../components/MyText";
 import { MyTitleText } from "../components/MyTitleText";
@@ -79,15 +78,16 @@ export const StartGameScreen = (props) => {
         <MyTitleText style={styles.subTitle}>{"Start a new game!"}</MyTitleText>
         <Card style={styles.inputContainer}>
           <MyText>Enter your name</MyText>
-          <TextInput
+          <InputValues
             onChangeText={onNameInputHandler}
             value={name}
             autoCorrect={false}
-          ></TextInput>
+            style={styles.userNameInput}
+          ></InputValues>
         </Card>
         <Card style={styles.inputContainer}>
           <MyText>Select a number</MyText>
-          <InputNumber
+          <InputValues
             blurOnSubmit
             autoCapitalize="none"
             autoCorrect={false}
@@ -96,7 +96,7 @@ export const StartGameScreen = (props) => {
             style={styles.input}
             onChangeText={onNumberInputHandler}
             value={enteredValue}
-          ></InputNumber>
+          ></InputValues>
           <View style={styles.buttonContainer}>
             <View style={styles.button}>
               <Button
@@ -147,6 +147,10 @@ const styles = StyleSheet.create({
   },
   input: {
     width: 50,
+    textAlign: "center",
+  },
+  userNameInput: {
+    width: 200,
     textAlign: "center",
   },
   summaryContainer: {

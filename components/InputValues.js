@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, TextInput } from "react-native";
 
-export const InputNumber = (props) => {
+export const InputValues = (props) => {
   return (
     <TextInput {...props} style={{ ...styles.input, ...props.style }}>
       {props.title}
